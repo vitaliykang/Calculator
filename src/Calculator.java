@@ -6,16 +6,15 @@ public class Calculator {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         String st = reader.readLine();
-        String pr[] = st.split("\\s");//splits the problem string into tokens and saves them as array
+        String[] pr = st.split("\\s");//splits the problem string into tokens and saves them as array
 
         Identifier id = new Identifier(pr[0], pr[1], pr[2]);
 
-        if (id.isOperator() == false){
+        if (!id.isOperator()){//if the operator is not +, -, *, or /, print an error message.
             throw new IOException("False operator.");
         }
 
-        if(id.isArabic() == true) {//the problem uses Arabic numerals
-            System.out.println("Arabic");
+        if(id.isArabic()) {//the problem uses Arabic numerals
 
             Integer n1 = new Integer(id.getN1());
             Integer n2 = new Integer(id.getN2());
@@ -26,14 +25,13 @@ public class Calculator {
 
         }
 
-        else if (id.isRoman() == true){//the problem uses Roman numerals
-            System.out.println("Roman");
+        else if (id.isRoman()){//the problem uses Roman numerals
+
             Converter cN1 = new Converter(id.getN1()); //taking first and the second number as String values...
             Converter cN2 = new Converter(id.getN2());
 
             Calculate cR = new Calculate(cN1.toArabic(), id.getOp(), cN2.toArabic());
             Converter result = new Converter(cR.compute()); //...and converting them to int values and performing calculation based on the operator.
-            System.out.println(cR.compute());
 
             if (cR.compute() <= 10){ //if the answer is equal or less than 10 perform simple conversion of the answer from Arabic numerals to Roman and print the result.
                 if (cR.compute() < 0){
@@ -47,7 +45,6 @@ public class Calculator {
                 Converter ones = new Converter(cR.compute() % 10);
                 System.out.println(result.tensToRoman() + ones.toRoman());
             }
-
 
         }
         else throw new IOException("Wrong input format.");

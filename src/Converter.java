@@ -1,17 +1,17 @@
-public class Converter {
+class Converter {
 
-    String str;
-    int i;
+    private String str;
+    private int i;
 
-    public Converter(String str){
+    Converter(String str){
         this.str = str;
     }
 
-    public Converter(int i){
+    Converter(int i){
         this.i = i;
     }
 
-    public int toArabic(){//converts Roman numeral to Arabic int
+    int toArabic(){//converts Roman numeral to Arabic int
         int a = 0;
         switch(str){
             case "I":
@@ -50,7 +50,7 @@ public class Converter {
 
     //Since the task states that first and the second numbers in the problem cannot be greater than 10,
     //the final answer cannot exceed 100. Hence, it is easier to use switch/case structure for the conversion algorithm.
-        public String toRoman(){//'Simple' conversion of 1-10 numerals
+    String toRoman(){//'Simple' conversion of 1-10 numerals
         String rom = "";
         i = Math.abs(i);
         switch(i){
@@ -88,8 +88,8 @@ public class Converter {
         return rom;
     }
 
-    public String tensToRoman(){ //Conversion of tens to Roman numerals
-        String rom = "";
+    String tensToRoman(){ //Conversion of tens to Roman numerals
+        String rom;
         int tens = i - (i % 10);
 
         switch (tens/10){
